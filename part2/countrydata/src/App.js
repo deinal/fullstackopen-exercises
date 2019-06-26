@@ -1,29 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-const CountryLanguages = ({ country }) => {
-  return (
-    country.languages.map(language =>
-      <li key={language.name}>{language.name}</li>
-    )
-  )
-}
-
-const Country = ({ country }) => {
-  return (
-    <div>
-      <h2>{country.name}</h2>
-      <p>capital {country.capital}</p>
-      <p>population {country.population}</p>
-      <h3>languages</h3>
-      <ul>
-        <CountryLanguages country={country} />
-      </ul>
-      <img alt={country.name} style={{ width: '100px', height: '100px' }} src={country.flag} />
-      <h3>Weather in {country.name}</h3>
-    </div>
-  )
-}
+import Country from './Country'
 
 function App() {
 
