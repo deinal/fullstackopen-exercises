@@ -11,7 +11,7 @@ const isDuplicate = (arr, name) => {
 }
 
 const PersonForm = ({ persons, setPersons, setNewName, setNewNumber,
-    newName, handleNameChange, newNumber, handleNumberChange, 
+    newName, handleNameChange, newNumber, handleNumberChange,
     setNotificationMessage, setNotificationType }) => {
 
     const addPerson = (event) => {
@@ -63,6 +63,14 @@ const PersonForm = ({ persons, setPersons, setNewName, setNewNumber,
                     setNotificationMessage(
                         `Added ${data.name}`
                     )
+                    setTimeout(() => {
+                        setNotificationMessage(null)
+                    }, 5000)
+                })
+                .catch(error => {
+                    setNotificationType('error')
+                    console.log(error.response.data)
+                    setNotificationMessage(`error: ${error.response.data.error}`)
                     setTimeout(() => {
                         setNotificationMessage(null)
                     }, 5000)
