@@ -2,7 +2,8 @@ module.exports = {
     'env': {
         'commonjs': true,
         'es6': true,
-        'node': true
+        'node': true,
+        'jest': true,
     },
     'extends': 'eslint:recommended',
     'globals': {
@@ -15,11 +16,11 @@ module.exports = {
     'rules': {
         'indent': [
             'error',
-            2
+            4
         ],
         'linebreak-style': [
             'error',
-            'unix'
+            'windows'
         ],
         'quotes': [
             'error',
