@@ -1,7 +1,7 @@
 const listHelper = require('../utils/list_helper')
 const blogs = require('./bloglist')
 
-describe('total likes', () => {
+describe('favorite blog', () => {
     const listWithOneBlog = [
         {
             _id: '5a422aa71b54a676234d17f8',
@@ -13,17 +13,17 @@ describe('total likes', () => {
         }
     ]
 
-    test('when list has only one blog equals the likes of that', () => {
-        const result = listHelper.totalLikes(listWithOneBlog)
-        expect(result).toBe(5)
+    test('when list has only one blog is that one', () => {
+        const result = listHelper.favoriteBlog(listWithOneBlog)
+        expect(result).toEqual(listWithOneBlog[0])
     })
 
-    test('of many is calculated right', () => {
-        const result = listHelper.totalLikes(blogs)
-        expect(result).toBe(36)
+    test('of many is correct', () => {
+        const result = listHelper.favoriteBlog(blogs)
+        expect(result).toEqual(blogs[2])
     })
 
-    test('of empty array is zero', () => {
-        expect(listHelper.totalLikes([])).toBe(0)
+    test('of empty array is empty object', () => {
+        expect(listHelper.favoriteBlog([])).toEqual({})
     })
 })
