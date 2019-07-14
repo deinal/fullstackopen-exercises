@@ -15,12 +15,12 @@ describe('favorite blog', () => {
 
     test('when list has only one blog is that one', () => {
         const result = listHelper.favoriteBlog(listWithOneBlog)
-        expect(result).toEqual(listWithOneBlog[0])
+        expect(result).toEqual({ title: listWithOneBlog[0].title, author: listWithOneBlog[0].author, likes: listWithOneBlog[0].likes })
     })
 
     test('of many is correct', () => {
         const result = listHelper.favoriteBlog(blogs)
-        expect(result).toEqual(blogs[2])
+        expect(result).toEqual({ title: blogs[2].title, author: blogs[2].author, likes: blogs[2].likes })
     })
 
     test('of empty array is empty object', () => {
