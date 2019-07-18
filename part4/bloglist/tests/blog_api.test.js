@@ -75,6 +75,21 @@ test('like missing defaults to zero', async () => {
     expect(likes[helper.initialBlogs.length]).toBe(0)
 })
 
+test('title and url missing return bad request', async () => {
+    const newBlog = {
+        author: "Parker",
+        likes: 31
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+
+    const blogs = await helper.blogsInDb()
+    expect(blogs.length).toBe(helper.initialBlogs.length)
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
