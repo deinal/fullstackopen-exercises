@@ -53,9 +53,26 @@ test('a blog can be added', async () => {
 
     const blogsAtEnd = await helper.blogsInDb()
     expect(blogsAtEnd.length).toBe(helper.initialBlogs.length + 1)
-
     const titles = blogsAtEnd.map(r => r.title)
     expect(titles).toContain('penguins')
+})
+
+test('like missing defaults to zero', async () => {
+    const newBlog = {
+        title: "giraffe",
+        author: "Morgan",
+        url: "bing.me"
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const blogs = await helper.blogsInDb()
+    const likes = blogs.map(r => r.likes)
+    expect(likes[helper.initialBlogs.length]).toBe(0)
 })
 
 afterAll(() => {
