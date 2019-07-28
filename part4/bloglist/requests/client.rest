@@ -2,20 +2,21 @@ GET http://localhost:3003/api/blogs
 
 ###
 
-DELETE http://localhost:3003/api/blogs/2
+DELETE http://localhost:3003/api/blogs/5d3d8742c53e6a3480e4f1db
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ldCIsImlkIjoiNWQzZGQ3ZWM4NDI3ZjA1NjM0NjBlODI0IiwiaWF0IjoxNTY0MzM0MDk1fQ.5SHW-jPK09HMVJHtWYr9P-vVQAzPXGPj1OeS7gTvhKY
 
 ###
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhpdGhlcmUiLCJpZCI6IjVkM2Q4ZGRmNWYwMWMzMjdlOGQ0NmI1MCIsImlhdCI6MTU2NDMxNjQ0Nn0.SvWkq1A3JXMQLXRY_eDtgR6WR8EMCgzoNGjGB9c13ug
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ldCIsImlkIjoiNWQzZGQ3ZWM4NDI3ZjA1NjM0NjBlODI0IiwiaWF0IjoxNTY0MzM0MDk1fQ.5SHW-jPK09HMVJHtWYr9P-vVQAzPXGPj1OeS7gTvhKY
 
 {
-    "title": "ConstructionTips",
-    "author": "Joi",
-    "url": "www.hihere.oi",
-    "likes": 22,
-    "userId": "5d3d847e42cb754f545d0684"
+    "title": "Construction",
+    "author": "Joice",
+    "url": "www.hihere.com",
+    "likes": 23,
+    "userId": "5d3dd7ec8427f0563460e824"
 }
 
 ### 
@@ -40,9 +41,9 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "username": "hithere",
-    "name": "Dani Boi",
-    "password": "hits"
+    "username": "net",
+    "name": "mia smith",
+    "password": "wall"
 }
 
 ###
@@ -51,6 +52,6 @@ POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "username": "hithere",
-    "password": "hits"
+    "username": "net",
+    "password": "wall"
 }
