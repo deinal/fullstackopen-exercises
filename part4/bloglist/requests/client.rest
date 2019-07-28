@@ -10,10 +10,11 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "CookingTips",
-    "author": "Josua",
-    "url": "www.hithere.io",
-    "likes": 22
+    "title": "ConstructionTips",
+    "author": "Joi",
+    "url": "www.hihere.oi",
+    "likes": 22,
+    "userId": "5d3d847e42cb754f545d0684"
 }
 
 ### 
@@ -26,4 +27,19 @@ Content-Type: application/json
     "author": "Josh",
     "url": "www.hithere.io",
     "likes": 22
+}
+
+###
+
+GET http://localhost:3003/api/users
+
+###
+
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "hithere",
+    "name": "Dani Boi",
+    "password": "hi"
 }
