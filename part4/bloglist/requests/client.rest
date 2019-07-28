@@ -8,6 +8,7 @@ DELETE http://localhost:3003/api/blogs/2
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhpdGhlcmUiLCJpZCI6IjVkM2Q4ZGRmNWYwMWMzMjdlOGQ0NmI1MCIsImlhdCI6MTU2NDMxNjQ0Nn0.SvWkq1A3JXMQLXRY_eDtgR6WR8EMCgzoNGjGB9c13ug
 
 {
     "title": "ConstructionTips",
@@ -41,5 +42,15 @@ Content-Type: application/json
 {
     "username": "hithere",
     "name": "Dani Boi",
-    "password": "hi"
+    "password": "hits"
+}
+
+###
+
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "hithere",
+    "password": "hits"
 }
