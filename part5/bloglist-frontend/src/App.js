@@ -3,6 +3,8 @@ import loginService from './services/login'
 import blogService from './services/blogs'
 import Blog from './components/Blog'
 import CreateBlog from './components/CreateBlog'
+import LoginForm from './components/LoginForm'
+import Togglable from './components/Togglable'
 
 const BlogList = ({ blogs, user }) => {
   return blogs
@@ -78,36 +80,17 @@ const App = () => {
     window.localStorage.removeItem('blogUser')
   }
 
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
-      <div>
-        username
-          <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        password
-          <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  )
-
   if (!user) {
     return (
       <div>
         <h2>log in to application</h2>
         <Notification message={notificationMessage} type={notificationType} />
-        {loginForm()}
+        <LoginForm
+          handleSubmit={handleLogin}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          username={username}
+          password={password} />
       </div>
     )
   }
@@ -118,7 +101,14 @@ const App = () => {
       <Notification message={notificationMessage} type={notificationType} />
       <p>{user.name} logged in <button onClick={handleLogout}>Log out</button></p>
       <h2>create new</h2>
-      <CreateBlog user={user} blogs={blogs} setBlogs={setBlogs} setNotificationMessage={setNotificationMessage} setNotificationType={setNotificationType} />
+      <Togglable buttonLabel="new blog">
+        <CreateBlog
+          user={user}
+          logs={blogs}
+          setBlogs={setBlogs}
+          setNotificationMessage={setNotificationMessage}
+          setNotificationType={setNotificationType} />
+      </Togglable>
       <BlogList blogs={blogs} user={user} />
     </div>
   )
