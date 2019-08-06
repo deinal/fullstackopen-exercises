@@ -6,13 +6,13 @@ import CreateBlog from './components/CreateBlog'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 
-const BlogList = ({ blogs, user }) => {
+const BlogList = ({ blogs, user, handleLike }) => {
   return blogs
     // .filter(blog => {
     //   return blog.user.username === user.username || blog.user.id === user.id
     // })
     .map(blog => (
-      <Blog blog={blog} key={blog.id} />
+      <Blog blog={blog} key={blog.id} handleLike={handleLike} />
     ))
 }
 
@@ -80,6 +80,27 @@ const App = () => {
     window.localStorage.removeItem('blogUser')
   }
 
+  const handleLike = async blog => {
+    const updatedBlog = {
+      ...blog,
+      likes: blog.likes + 1
+    }
+
+    const id = blog.id
+    try {
+      await blogService.update(updatedBlog, id)
+      setBlogs(
+        blogs.map(blog => {
+          return blog.id !== id ? blog : { ...blog, likes: blog.likes + 1 }
+        })
+      )
+    } catch (error) {
+      setNotificationType('error')
+      setNotificationMessage(`failed to like blog ${blog.title} by ${blog.author}`)
+      setTimeout(() => { setNotificationMessage(null) }, 5000)
+    }
+  }
+
   if (!user) {
     return (
       <div>
@@ -109,7 +130,7 @@ const App = () => {
           setNotificationMessage={setNotificationMessage}
           setNotificationType={setNotificationType} />
       </Togglable>
-      <BlogList blogs={blogs} user={user} />
+      <BlogList blogs={blogs} user={user} handleLike={handleLike} />
     </div>
   )
 }
