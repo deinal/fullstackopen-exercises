@@ -6,13 +6,14 @@ import CreateBlog from './components/CreateBlog'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 
-const BlogList = ({ blogs, user, handleLike }) => {
+const BlogList = ({ blogs, user, handleLike, handleDelete }) => {
   return blogs
     // .filter(blog => {
     //   return blog.user.username === user.username || blog.user.id === user.id
     // })
+    .sort((a, b) => b.likes - a.likes)
     .map(blog => (
-      <Blog blog={blog} key={blog.id} handleLike={handleLike} />
+      <Blog blog={blog} key={blog.id} handleLike={handleLike} handleDelete={handleDelete} />
     ))
 }
 
@@ -101,6 +102,22 @@ const App = () => {
     }
   }
 
+  const handleDelete = async blog => {
+    if (window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {
+      const id = blog.id
+      try {
+        await blogService.remove(id)
+        setBlogs(
+          blogs.filter(blog => blog.id !== id)
+        )
+      } catch (error) {
+        setNotificationType('error')
+        setNotificationMessage(`failed to remove blog ${blog.title} by ${blog.author}`)
+        setTimeout(() => { setNotificationMessage(null) }, 5000)
+      }
+    }
+  }
+
   if (!user) {
     return (
       <div>
@@ -130,7 +147,7 @@ const App = () => {
           setNotificationMessage={setNotificationMessage}
           setNotificationType={setNotificationType} />
       </Togglable>
-      <BlogList blogs={blogs} user={user} handleLike={handleLike} />
+      <BlogList blogs={blogs} user={user} handleLike={handleLike} handleDelete={handleDelete} />
     </div>
   )
 }
