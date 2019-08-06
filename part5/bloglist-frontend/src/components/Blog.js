@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-const Blog = ({ blog, handleLike, handleDelete }) => {
+const Blog = ({ user, blog, handleLike, handleDelete }) => {
 
   const [visible, setVisible] = useState(false)
 
-  const toggleVisibility = () => {
-    setVisible(!visible);
-  }
+  const toggleVisibility = () => setVisible(!visible)
+
+  const showDelete = user.name == blog.user.name
 
   return (
     <div className="blog" onClick={toggleVisibility}>
@@ -16,7 +16,9 @@ const Blog = ({ blog, handleLike, handleDelete }) => {
           {blog.likes} likes
           <button type="button" onClick={() => handleLike(blog)}>like </button><br />
           added by {blog.user.name}<br />
-          <button type="button" onClick={() => handleDelete(blog)}>remove </button>
+          {showDelete && (
+            <button type="button" onClick={() => handleDelete(blog)}>remove </button>
+          )}
         </div>
       )}
     </div>
