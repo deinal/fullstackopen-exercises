@@ -8,9 +8,9 @@ import Togglable from './components/Togglable'
 
 const BlogList = ({ blogs, user }) => {
   return blogs
-    .filter(blog => {
-      return blog.user.username === user.username || blog.user.id === user.id
-    })
+    // .filter(blog => {
+    //   return blog.user.username === user.username || blog.user.id === user.id
+    // })
     .map(blog => (
       <Blog blog={blog} key={blog.id} />
     ))
