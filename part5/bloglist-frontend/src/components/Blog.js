@@ -5,7 +5,7 @@ const Blog = ({ user, blog, handleLike, handleDelete }) => {
 
   const toggleVisibility = () => setVisible(!visible)
 
-  const showDelete = user.name == blog.user.name
+  const showDelete = user.name === blog.user.name
 
   return (
     <div className="blog" onClick={toggleVisibility}>
