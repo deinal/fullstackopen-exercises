@@ -71,7 +71,7 @@ const App = () => {
       setPassword('')
     } catch (exception) {
       setNotificationType('error')
-      setNotificationMessage(`wrong username or password`)
+      setNotificationMessage('wrong username or password')
       setTimeout(() => { setNotificationMessage(null) }, 5000)
     }
   }
